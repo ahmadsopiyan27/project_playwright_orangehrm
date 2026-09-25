@@ -6,8 +6,9 @@ with sync_playwright() as p:
     page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
     
 
-    page.fill("input[name='username']", "Admin")
-    page.fill("input[name='password']", "admin123")
-    page.click("button[type='submit']")
-    assert page.to_be_visible("text=Dashboard")
+    page.locator("//input[@name='username']").fill("Admin")
+    page.locator("//input[@name='password']").fill("admin123")
+    page.locator("//button[@type='submit']").click()
+    assert page.locator("//h6[normalize-space()='Dashboard'][1]").text_content() == "Dashboard"
+    
     browser.close()
