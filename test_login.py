@@ -5,8 +5,7 @@ import allure
 @allure.title("Login Test")
 @allure.description("This test case is to verify the login functionality of the OrangeHRM application.")
 @allure.severity(allure.severity_level.CRITICAL)
-@allure.feature("Login Feature")
-@allure.story("Valid Login Test")
+@allure.tag("Login", "Smoke Test")
 def test_login_success():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
@@ -22,8 +21,7 @@ def test_login_success():
 @allure.title("Negative Login Test")
 @allure.description("This test case is to verify the negative login functionality of the OrangeHRM application.")
 @allure.severity(allure.severity_level.NORMAL)
-@allure.feature("Login Feature")
-@allure.story("Invalid Login Test")
+@allure.tag("Login", "Negative Test")
 def test_negative_login():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
