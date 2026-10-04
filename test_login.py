@@ -17,9 +17,10 @@ def test_login_success():
             page.locator("//input[@name='username']").fill("Admin")
             page.locator("//input[@name='password']").fill("admin123")
             page.locator("//button[@type='submit']").click()
-        allure.attach(page.screenshot(), name="Login Success Screenshot", 
-                      attachment_type=allure.attachment_type.PNG)
+
         assert page.locator("//h6[normalize-space()='Dashboard'][1]").text_content() == "Dashboard"
+        allure.attach(page.screenshot(), name="Login Success Screenshot", 
+                              attachment_type=allure.attachment_type.PNG)
 
 @allure.title("Negative Login Test")
 @allure.description("This test case is to verify the negative login functionality of the OrangeHRM application.")
@@ -36,8 +37,9 @@ def test_negative_login():
             page.locator("//input[@name='username']").fill("Admin")
             page.locator("//input[@name='password']").fill("asaaassdd")
             page.locator("//button[@type='submit']").click()
-        allure.attach(page.screenshot(), name="Negative Login Screenshot", 
-                      attachment_type=allure.attachment_type.PNG)
         with allure.step("Verify the error message"):
             assert page.locator("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']").text_content() == "Invalid credentials"
-        browser.close() 
+        allure.attach(page.screenshot(), name="Negative Login Screenshot", 
+                              attachment_type=allure.attachment_type.PNG)
+        with allure.step("Close the browser"):
+            browser.close() 
