@@ -2,6 +2,15 @@ from playwright.sync_api import sync_playwright, expect
 import pytest
 import allure
 
+
+@pytest.fixture
+def setup():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+        page = browser.new_page()
+        yield page
+        browser.close()
+
 @allure.title("Login Test")
 @allure.description("This test case is to verify the login functionality of the OrangeHRM application.")
 @allure.severity(allure.severity_level.CRITICAL)
