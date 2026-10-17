@@ -5,12 +5,14 @@ import allure
 
 @pytest.fixture
 def setup():
-    with allure.step("Launch the browser and navigate to the login page"):
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
-        page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+     with sync_playwright() as p:
+        with allure.step("Launch the browser and navigate to the login page"):
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=False)
+                page = browser.new_page()
+                page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
 
-    yield browser
+        yield browser
 
-    with allure.step("Close the browser"):
-        browser.close() 
+        with allure.step("Close the browser"):
+            browser.close() 
