@@ -3,32 +3,19 @@ import pytest
 import allure
 
 
-@pytest.fixture
-def setup():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
-        yield page
-        browser.close()
-
 @allure.title("Login Test")
 @allure.description("This test case is to verify the login functionality of the OrangeHRM application.")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.tag("Login", "Smoke Test")
-def test_login_success():
+def test_login_success(setup):
     with sync_playwright() as p:
-        with allure.step("Launch the browser and navigate to the login page"):
-            browser = p.chromium.launch(headless=False)
-            page = browser.new_page()
-            page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-        
         with allure.step("Enter valid credentials and submit the login form"):
-            page.locator("//input[@name='username']").fill("Admin")
-            page.locator("//input[@name='password']").fill("admin123")
-            page.locator("//button[@type='submit']").click()
+            setup.locator("//input[@name='username']").fill("Admin")
+            setup.locator("//input[@name='password']").fill("admin123")
+            setup.locator("//button[@type='submit']").click()
 
-        assert page.locator("//h6[normalize-space()='Dashboard'][1]").text_content() == "Dashboard"
-        allure.attach(page.screenshot(), name="Login Success Screenshot", 
+        assert setup.locator("//h6[normalize-space()='Dashboard'][1]").text_content() == "Dashboard"
+        allure.attach(setup.screenshot(), name="Login Success Screenshot", 
                               attachment_type=allure.attachment_type.PNG)
 
 @allure.title("Negative Login Test")
@@ -50,5 +37,3 @@ def test_negative_login():
             assert page.locator("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']").text_content() == "Invalid credentials"
         allure.attach(page.screenshot(), name="Negative Login Screenshot", 
                               attachment_type=allure.attachment_type.PNG)
-        with allure.step("Close the browser"):
-            browser.close() 
