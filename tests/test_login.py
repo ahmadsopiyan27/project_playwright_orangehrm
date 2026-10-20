@@ -12,8 +12,8 @@ def test_login_success(setup):
     login_page = LoginPage(setup)
     products_page = products(setup)
 
-    login_page.input_username()
-    login_page.input_password()
+    login_page.input_username("Admin")
+    login_page.input_password("admin123")
     login_page.click_login_button()
     products_page.verify_dasboard()
 
