@@ -14,8 +14,8 @@ class products:
 
 
 
-        def verify_invalid_credential_error(self):
-            with allure.step("Verify the error message"):
-                assert self.page.locator("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']").text_content() == "Invalid credentials"
-            allure.attach(self.page.screenshot(), name="Negative Login Screenshot", 
-                                  attachment_type=allure.attachment_type.PNG)
+        # def verify_invalid_credential_error(self):
+        #     with allure.step("Verify the error message"):
+        #         assert self.page.locator("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']").text_content() == "Invalid credentials"
+        #     allure.attach(self.page.screenshot(), name="Negative Login Screenshot", 
+        #                           attachment_type=allure.attachment_type.PNG)

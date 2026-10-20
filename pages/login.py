@@ -20,3 +20,13 @@ class LoginPage:
     def click_login_button(self):
         with allure.step("Click login button"):
             self.page.locator(Loc.login_button).click()
+
+    def verify_invalid_credential_error(self):
+        with allure.step("Verify the error message"):
+            error = self.page.locator("//p[contains(@class,'oxd-alert-content-text')]")
+            assert error.text_content() == "Invalid credentials"
+            allure.attach(
+                self.page.screenshot(),
+                name="Negative Login Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
