@@ -9,13 +9,13 @@ class LoginPage:
         self.page = page
 
 
-    def input_username(self):
+    def input_username(self, username):
         with allure.step("Enter valid username"):
-            self.page.locator(Loc.username).fill("Admin")
+            self.page.locator(Loc.username).fill(username)
 
-    def input_password(self):
+    def input_password(self, password):
         with allure.step("Enter valid password"):
-            self.page.locator(Loc.password).fill("admin123")
+            self.page.locator(Loc.password).fill(password)
 
     def click_login_button(self):
         with allure.step("Click login button"):
