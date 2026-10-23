@@ -30,3 +30,20 @@ class LoginPage:
                 name="Negative Login Screenshot",
                 attachment_type=allure.attachment_type.PNG,
             )
+
+    def click_forget_password(self):
+        with allure.step("Click on forget password link"):
+            self.page.locator(Loc.forget_password).click()
+
+    def input_reset_password_username(self, username):
+        with allure.step("Enter username for reset password"):
+            self.page.locator(Loc.reset_password_username).fill(username)
+
+    def click_reset_password_button(self):
+        with allure.step("Click reset password button"):
+            self.page.locator(Loc.button_reset_password).click()
+
+    def click_cancel_button(self):
+        with allure.step("Click cancel button"):
+            self.page.locator(Loc.button_cancel).click()
+            
