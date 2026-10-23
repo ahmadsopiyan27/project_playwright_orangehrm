@@ -1,9 +1,14 @@
 
-
+# IJ-BOOK-BB17-34AF
 
 
 class Loc:
     username = "//input[@name='username']"
     password = "//input[@name='password']"
     login_button = "//button[@type='submit']"
+    forget_password = "//*[text()='Forgot your password? ']"
+    reset_password_username = "//input[@name='username']"
+    button_reset_password = "//button[text()=' Reset Password ']"
+    button_cancel = "//button[text()=' Cancel ']"
+
     
