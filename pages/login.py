@@ -46,4 +46,24 @@ class LoginPage:
     def click_cancel_button(self):
         with allure.step("Click cancel button"):
             self.page.locator(Loc.button_cancel).click()
-            
+
+
+    def verify_success_reset_password(self, expected_text):
+        with allure.step("Verify the success message for reset password"):
+            success_message = self.page.locator(Loc.verify_success_reset_password)
+            expect(success_message).to_have_text(expected_text)
+            allure.attach(
+                self.page.screenshot(),
+                name="Reset Password Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
+
+    def login_homepage(self, login):
+        with allure.step("Verify the login homepage"):
+            homepage_text = self.page.locator(Loc.login_hompepage)
+            expect(homepage_text).to_have_text(login)
+            allure.attach(
+                self.page.screenshot(),
+                name="Login Homepage Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )

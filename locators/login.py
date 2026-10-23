@@ -10,5 +10,7 @@ class Loc:
     reset_password_username = "//input[@name='username']"
     button_reset_password = "//button[text()=' Reset Password ']"
     button_cancel = "//button[text()=' Cancel ']"
+    verify_success_reset_password = "//*[text()='Reset Password link sent successfully']"
+    login_hompepage = "//h5[text()='Login']"
 
     
