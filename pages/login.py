@@ -67,3 +67,24 @@ class LoginPage:
                 name="Login Homepage Screenshot",
                 attachment_type=allure.attachment_type.PNG,
             )
+
+    def verify_required_message(self, expected_count, expected_text="Required"):
+        with allure.step(f"Verify {expected_count} required message(s) displayed"):
+            messages = self.page.locator(Loc.required_message)
+            expect(messages).to_have_count(expected_count)
+            for i in range(expected_count):
+                expect(messages.nth(i)).to_have_text(expected_text)
+            allure.attach(
+                self.page.screenshot(),
+                name="Required Message Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
+
+    def click_profile_icon(self):
+        with allure.step("Click on profile icon"):
+            self.page.locator(Loc.profile_icon).click()
+
+    def click_logout_button(self):
+        with allure.step("Click on logout button"):
+            self.page.locator(Loc.button_logout).click()
+    
