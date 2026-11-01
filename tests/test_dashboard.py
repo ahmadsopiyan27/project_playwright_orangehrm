@@ -67,3 +67,7 @@ def test_dsh_003_sidebar_search(setup):
     login_page.click_login_button()
     dashboard_page.input_sidebar_search("PIM")
     dashboard_page.verify_sidebar_search_result("PIM")
+
+
+
+# @allure.title("Sidebar Search No Result Test")
