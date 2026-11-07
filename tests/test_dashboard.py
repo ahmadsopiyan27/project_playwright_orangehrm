@@ -71,3 +71,4 @@ def test_dsh_003_sidebar_search(setup):
 
 
 # @allure.title("Sidebar Search No Result Test")
+# allure.description("DSH-004: Verify sidebar search shows no results for non-matching keyword.")
