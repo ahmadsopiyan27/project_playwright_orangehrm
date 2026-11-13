@@ -66,6 +66,3 @@ def test_required_field_validation(setup):
 
     login_page.click_login_button()
     login_page.verify_required_message(2)
-
-
-# @allure.title("Login Page Title Test")
