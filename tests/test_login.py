@@ -68,3 +68,5 @@ def test_required_field_validation(setup):
     login_page.verify_required_message(2)
 
     # Verify that the required message is displayed for both username and password fields
+    # The verify_required_message method should check for the presence of the required message for both fields and return True if both are present, otherwise False.
+    
